@@ -5,7 +5,7 @@
 设置了个人常用参数。其余参数自行到相应标签添加。
 
 ## 主要代码来自以下项目，我加入了批量下载的部分。感谢作者。
-[N_m3u8DL-RE-Bat-Generator]([https://github.com/nilaoda/N_m3u8DL-RE](https://github.com/dupontjoy/N_m3u8DL-RE-Bat-Generator))
+[N_m3u8DL-RE-Bat-Generator](https://github.com/dupontjoy/N_m3u8DL-RE-Bat-Generator)
 
 ## 主程序
 [N_m3u8DL-RE](https://github.com/nilaoda/N_m3u8DL-RE)
