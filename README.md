@@ -5,6 +5,9 @@
 设置了个人常用参数。其余参数自行到相应标签添加。
 ### 使用方法
 将N_m3u8DL-RE.exe, ffmpeg.xe, N_m3u8DL-RE_SimpleBatGUI.bat 放到同一个文件夹下，运行bat文件N_m3u8DL-RE_SimpleBatGUI.bat。
+> update 2024.5.6 
+> 加入了去广告关键字，测试release版出错，请使用提供的RE-action版本。
+> 提供的ffmpeg来自nilaoda作者的旧项目N_m3u8DL_CLI_simpleG，为裁剪过的旧版本，只用来copy混流mp4. 如出现问题请下载使用新版本。
 
 ## 主程序
 [N_m3u8DL-RE](https://github.com/nilaoda/N_m3u8DL-RE)
