@@ -53,8 +53,9 @@ goto :eof
 
 :setting_m3u8_params
 ::设置m3u8下载参数
-set m3u8_params=--download-retry-count:9 --auto-select:true --check-segments-count:false --no-log:true --append-url-params:true -mt:true --mp4-real-time-decryption:true --ui-language:zh-CN
-
+set m3u8_params=--download-retry-count:9 --auto-select:true --check-segments-count:false --no-log:true --append-url-params:true -mt:true --mp4-real-time-decryption:true --ui-language:zh-CN --ad-keyword \d{1,}o\d{3,4}.ts|\/ad\w{0,}\/ -M format=mp4
+::加入过滤广告分片 --ad-keyword \d{1,}o\d{3,4}.ts|\/ad\w{0,}\/ 如出现问题请尝试删除该选项
+::加入指定尝试混流的格式 -M format=mp4
 goto :eof
 
 
@@ -124,13 +125,13 @@ goto :eof
 ::批量下载的输入输出,如不设定，默认为当前目录的input.txt，输出output.bat
 :set_batchfile_input
 set "batchfile_input="
-set /p "batchfile_input=请输入批量下载文件的文件名或完整路径(**.txt,留空确认则默认设置): "
+set /p "batchfile_input=请输入包含批量下载链接的文件名或完整路径(**.txt,留空确认则默认设置当前文件夹的input.txt): "
 if "!batchfile_input!" neq "" (
     set input=!batchfile_input!
 )
 :set_batchfile_output
 set "batchfile_output="
-set /p "batchfile_output=请输入输出批量下载的文件名(留空确认则默认设置): "
+set /p "batchfile_output=请输入将输出批量下载bat的文件名(**,不带后缀名bat. 留空确认则默认设置当前文件夹的output.bat): "
 if "!batchfile_output!" neq "" (
     set output=!batchfile_output!.bat
 )
