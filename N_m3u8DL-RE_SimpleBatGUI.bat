@@ -32,6 +32,9 @@ if %a%==3 goto live_record
 
 ::---------------设置部分start---------------
 :setting_path
+::设置主程序文件名，方便切换不同版本
+set REfile=N_m3u8DL-RE_action
+
 ::设置临时文件存储目录
 set TempDir=D:\Downloads\New\N_m3u8DL_Temp
 
@@ -53,9 +56,10 @@ goto :eof
 
 :setting_m3u8_params
 ::设置m3u8下载参数
-set m3u8_params=--download-retry-count:9 --auto-select:true --check-segments-count:false --no-log:true --append-url-params:true -mt:true --mp4-real-time-decryption:true --ui-language:zh-CN --ad-keyword \d{1,}o\d{3,4}.ts|\/ad\w{0,}\/ -M format=mp4
-::加入过滤广告分片 --ad-keyword \d{1,}o\d{3,4}.ts|\/ad\w{0,}\/ 如出现问题请尝试删除该选项
-::加入指定尝试混流的格式 -M format=mp4
+set m3u8_params=--download-retry-count:9 --auto-select:true --check-segments-count:false --no-log:false --append-url-params:true --ad-keyword "\d{1,}o\d{3,4}.ts|\/ad\w{0,}\/"  -mt:true --mp4-real-time-decryption:true --ui-language:zh-CN
+::加入过滤广告分片 --ad-keyword "\d{1,}o\d{3,4}.ts|\/ad\w{0,}\/" 如出现问题请尝试删除该选项
+::另一个关键字 --ad-keyword "o\d{3,4}.ts$|/ads/"
+
 goto :eof
 
 
@@ -207,13 +211,13 @@ goto :eof
 
 ::---------------输出部分---------------
 :m3u8_download_print
-echo.下载命令：N_m3u8DL-RE "%link%" %m3u8_params% --ffmpeg-binary-path %ffmpeg% --tmp-dir %TempDir% --save-dir %SaveDir% --save-name "%filename%"
+echo.下载命令：%REfile% "%link%" %m3u8_params% --ffmpeg-binary-path %ffmpeg% --tmp-dir %TempDir% --save-dir %SaveDir% --save-name "%filename%"
 ::空一行
 echo.
 goto :eof
 
 :live_record_print
-echo.下载命令：N_m3u8DL-RE "%link%" %live_record_params% --tmp-dir %TempDir% --save-dir %SaveDir% --save-name "%filename%"
+echo.下载命令：%REfile% "%link%" %live_record_params% --tmp-dir %TempDir% --save-dir %SaveDir% --save-name "%filename%"
 ::空一行
 echo.
 goto :eof
@@ -222,16 +226,16 @@ goto :eof
 ::下载命令
 :m3u8_downloading
 ::将%filename%加引号，防止文件名带有某些符号导致路径识別失败
-N_m3u8DL-RE "%link%" %m3u8_params% --ffmpeg-binary-path %ffmpeg% --tmp-dir %TempDir% --save-dir %SaveDir% --save-name "%filename%"
+%REfile% "%link%" %m3u8_params% --ffmpeg-binary-path %ffmpeg% --tmp-dir %TempDir% --save-dir %SaveDir% --save-name "%filename%"
 goto :eof
 
 :live_recording
-N_m3u8DL-RE "%link%" %live_record_params% --tmp-dir %TempDir% --save-dir %SaveDir% --save-name "%filename%"
+%REfile% "%link%" %live_record_params% --tmp-dir %TempDir% --save-dir %SaveDir% --save-name "%filename%"
 goto :eof
 
 ::下载完成暂停一段时间关闭窗口，防止运行报错时直接关闭窗口。
 :when_done
-timeout /t 5 /nobreak
-exit
-goto :eof
+::timeout /t 25 /nobreak
+::exit
+::goto :eof
 
