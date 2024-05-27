@@ -3,9 +3,25 @@
 @echo off & setlocal enabledelayedexpansion
 
 ::开始
-Title N_m3u8DL-RE下载调用 by Lenno 2023.7.31
+Title N_m3u8DL-RE下载调用 by Lenno 2024.5.27
 
 cd /d %~dp0
+
+::****************************************
+::目录设置提前，方便使用时查看
+::设置主程序文件名，方便切换不同版本
+set REfile=N_m3u8DL-RE_action
+::set REfile=N_m3u8DL-RE
+
+::设置临时文件存储目录
+set TempDir=D:\Downloads\New\N_m3u8DL_Temp
+
+::设置输出目录
+set SaveDir=D:\Downloads\New
+
+::设置ffmpeg.exe路徑。从批处理所在文件夹到Program Files共3层。
+set ffmpeg=ffmpeg.exe
+::****************************************
 
 ::菜单部分
 :menu
@@ -23,6 +39,13 @@ ECHO  3、直播录制
 echo.
 ECHO. **********************************************************
 echo.
+ECHO  *当前设置主程序名:%REfile%
+ECHO  *当前设置输出目录:%SaveDir%
+ECHO  *当前设置临时目录:%TempDir%
+ECHO  *当前设置FFMPEG路径:%ffmpeg%
+echo.
+ECHO. **********************************************************
+echo.
 set /p a=请输入操作序号并回车（1、2、3）：
 cls
 
@@ -32,18 +55,7 @@ if %a%==3 goto live_record
 
 ::---------------设置部分start---------------
 :setting_path
-::设置主程序文件名，方便切换不同版本
-set REfile=N_m3u8DL-RE_action
-
-::设置临时文件存储目录
-set TempDir=D:\Downloads\New\N_m3u8DL_Temp
-
-::设置输出目录
-set SaveDir=D:\Downloads\New
-
-::设置ffmpeg.exe路徑。从批处理所在文件夹到Program Files共3层。
-set ffmpeg=ffmpeg.exe
-
+::目录设置提前到全局位置，方便使用时查看
 ::设置输入文件input.txt，和输出的批量下载批处理output.bat
 ::input.txt格式为 要保存的文件名,m3u8下载链接
 ::input示例
@@ -53,12 +65,14 @@ set input=input.txt
 set output=output.bat
 goto :eof
 
-
 :setting_m3u8_params
-::设置m3u8下载参数
-set m3u8_params=--download-retry-count:9 --auto-select:true --check-segments-count:false --no-log:false --append-url-params:true --ad-keyword "\d{1,}o\d{3,4}.ts|\/ad\w{0,}\/"  -mt:true --mp4-real-time-decryption:true --ui-language:zh-CN
-::加入过滤广告分片 --ad-keyword "\d{1,}o\d{3,4}.ts|\/ad\w{0,}\/" 如出现问题请尝试删除该选项
+::设置过滤广告
+set AntiADs=--ad-keyword "\d{1,}o\d{3,4}.ts|\/ad\w{0,}\/"
+::加入过滤广告分片 --ad-keyword "\d{1,}o\d{3,4}.ts|\/ad\w{0,}\/" 如出现问题请尝试清空该选项
 ::另一个关键字 --ad-keyword "o\d{3,4}.ts$|/ads/"
+
+::设置m3u8下载参数
+set m3u8_params=--download-retry-count:9 --auto-select:true --check-segments-count:false --no-log:true %AntiADs% --append-url-params:true  -mt:true --mp4-real-time-decryption:true --ui-language:zh-CN
 
 goto :eof
 
@@ -235,7 +249,7 @@ goto :eof
 
 ::下载完成暂停一段时间关闭窗口，防止运行报错时直接关闭窗口。
 :when_done
-::timeout /t 25 /nobreak
-::exit
-::goto :eof
+timeout /t 10 /nobreak
+exit
+goto :eof
 
