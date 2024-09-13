@@ -63,7 +63,7 @@ if %a%==4 goto ff_converter
 ::目录设置提前到全局位置，方便使用时查看
 ::设置输入文件input.txt，和输出的批量下载批处理output.bat
 ::input.txt格式为 要保存的文件名,m3u8下载链接
-::input示例   ！！注意，文本编码需要为ANSI否则乱码！！
+::input示例   ！！注意，文本编码需要为ANSI否则乱码！！ -verUTF8 尝试用该bat使用UTF8编码
 ::蜘蛛侠1,http://xx.xx.m3u8
 ::蜘蛛侠2,http://xx.xx.m3u8
 set input=input.txt
@@ -161,7 +161,7 @@ goto :eof
 :set_batchfile_input
 set "batchfile_input="
 echo.
-ECHO   ！！注意，txt文本编码需要为ANSI否则乱码！！
+ECHO   ！！注意，txt文本编码需要为ANSI否则乱码！！-verUTF8 尝试用该bat使用UTF8编码
 ECHO   ！！如果批量下载失败请先检查input.txt文件编码是否正确，以及生成的output.bat是否正常！！
 echo.
 set /p "batchfile_input=请输入包含批量下载链接的文件名或完整路径(**.txt,留空确认则默认设置当前文件夹的input.txt): "
@@ -219,7 +219,7 @@ cls
 ECHO  批量下载的输入为：%input%
 ECHO  批量下载的执行为：%output%
 echo.
-ECHO   ！！注意，txt文本编码需要为ANSI否则乱码！！
+ECHO   ！！注意，txt文本编码需要为ANSI否则乱码！！-verUTF8 尝试用该bat使用UTF8编码
 ECHO   ！！如果批量下载失败请先检查input.txt文件编码是否正确，以及生成的output.bat是否正常！！
 echo.
 call %output%
