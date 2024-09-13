@@ -9,7 +9,8 @@ cd /d %~dp0
 
 ::****************************************
 ::目录设置提前，方便使用时查看
-::设置主程序文件名，方便切换不同版本，release0.2.0beta不支持ad-keyword，要使用action build版
+::设置主程序文件名，方便切换不同版本，release0.2.0beta不支持ad-keyword，要使用0.2.1beta或action build版
+::最新beta为0.2.1-20240828，已正常使用，无需更换action build版
 set REfile=N_m3u8DL-RE
 ::set REfile= 自己修改为所使用的主文件名，N_m3u8DL-RE，N_m3u8DL-RE_beta，N_m3u8DL-RE_action
 
