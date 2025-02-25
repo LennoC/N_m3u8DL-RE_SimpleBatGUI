@@ -5,23 +5,16 @@
 设置了个人常用参数。其余参数自行到相应标签添加。
 ### 使用方法
 将N_m3u8DL-RE.exe, ffmpeg.exe, N_m3u8DL-RE_SimpleBatGUI.bat 放到同一个文件夹下，运行bat文件N_m3u8DL-RE_SimpleBatGUI.bat。
-> update 2024.9.13
->> ~~!!加入了去广告关键字，测试release版出错，请使用提供的RE-action版本。2024.6~~
->> 
->> release的0.2.1-beta ver20240828 已可正常使用，请下载更新。
->> 
 >> 提供的ffmpeg来自nilaoda作者的旧项目N_m3u8DL_CLI_simpleG，为裁剪过的旧版本，只用来copy混流mp4. 如出现问题请下载使用新版本。
 
 >目录内文件版本
->>N_m3u8DL-RE_action：20240807  6cc09fa
->>
->>N_m3u8DL-RE_beta：20230828 v0.2.1-beta
->>
->>N_m3u8DL-RE：20230828 v0.2.1-beta
+>> N_m3u8DL-RE_action：20241216  1a52a7a
+>> 
+>> N_m3u8DL-RE：20241203  v0.3.0-beta
 
 ## 主程序
 [N_m3u8DL-RE](https://github.com/nilaoda/N_m3u8DL-RE)
-> 本项目附带一个action编译版本，追求稳定请到原项目下载release版本。
+> 本项目附带release和action编译版本，可能更新不及时，请到主程序项目查看最新内容。
 
 ## ffmpeg 混流合并文件需要
 ffmpeg下载:
